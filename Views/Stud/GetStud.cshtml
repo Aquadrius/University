@@ -1,0 +1,17 @@
+﻿@model List<University.Domain.Entity.Stud>
+    ViewData["Title"] = "GetStuds";
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+@foreach (var stud in Model)
+{
+   
+    
+    <p>@stud.Lastname    @stud.Firstname    @stud.Surname   @stud.Kurs</p>
+
+}
+
+<h1>GetStuds</h1>

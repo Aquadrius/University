@@ -1,0 +1,24 @@
+﻿@model University.Models.ViewModelStudLec
+
+    ViewData["Title"] = "SelectLec";
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+
+@foreach (var item in Model.Teachers)
+{
+
+
+    <p>@item.Lastname     @item.Firstname</p>
+
+
+
+}
+@foreach (var item in Model.Lectures)
+{
+    <p> @item.LectureName  @item.Info</p>
+}
+<h1>SelectLec</h1>

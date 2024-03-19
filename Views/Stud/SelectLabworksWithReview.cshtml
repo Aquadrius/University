@@ -1,0 +1,25 @@
+﻿@model University.Models.ViewModelStudLec
+@{
+    ViewData["Title"] = "SelectLabworksWithReview";
+}
+
+@foreach (var item in Model.Studs)
+{
+    <p>@item.Lastname     @item.Firstname</p>
+}
+
+@foreach (var item in Model.Labworks)
+
+{
+    <p>@item.LabworkName     </p>
+
+    
+}
+
+@foreach (var r in Model.Review)
+    {
+       <p>@r.RewiewName    </p>
+    }
+
+<h1>SelectLabworksWithReview</h1>
+
