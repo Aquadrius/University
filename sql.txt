@@ -1,0 +1,44 @@
+Create Database Uiversity
+
+Create table Stud (StudId int primary key not null, LastName nvarchar (50) not null, Firstname nvarchar (50) not nulL,
+Surname nvarchar (50), Kurs int);
+
+Create table Teacher (TeacherId int primary key not null, LastName nvarchar (50) not null, Firstname nvarchar (50) not nulL,
+Surname nvarchar (50));
+
+Create table Lecture (LectureId int primary key not null, LectureName text not null, Info text);
+
+Create table Labwork (LabworkId int primary key not null, LabworkName text, LectureId int references Lecture (LectureId));
+
+Create table Review (ReviewId int primary key not null, ReviewName text,
+LabworkId int references Labwork (LabworkId) on update cascade on delete no action,
+StudId int references Stud (StudId) on update cascade on delete no action,
+foreign key (LabworkId,StudId));
+
+Create table Grade ( GradeId int primary key not null, Meaning int,
+LabworkId int references Labwork (LabworkId) on update cascade on delete no action,
+StudId int references Stud (StudId) on update cascade on delete no action,
+foreign key (LabworkId,StudId));
+
+Create table LectureStud (LectureId int references Stud (StudId) on update cascade on delete no action,
+StudId int references Lecture (LectureId) on update cascade on delete no action);
+
+Create table LabworkStud (LabworkId int references Stud (StudId) on update cascade on delete no action,
+StudId int references Labwork (LabworkId) on update cascade on delete no action);
+
+Create table LectureTeacher (LectureId int references Teacher (TeacherId) on update cascade on delete no action,
+TeacherId int references Lecture (LectureId) on update cascade on delete no action);
+
+Create table User (Id int primary key not null,UserName nvarchar(50) not null,Password int not null, Name nvarchar(50) not null,Email text not null, Role nvarchar(50) not null);
+
+Хранимая процедура для возвращения неуспевающих студентов:
+
+CREATE PROCEDURE [dbo].[GetFailingStudent]
+	
+AS
+BEGIN
+	SET NOCOUNT ON;
+    	SELECT StudId from Grade where Meaning<3;
+END
+GO
+
